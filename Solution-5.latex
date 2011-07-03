@@ -1,0 +1,76 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[a4paper,hmargin=2cm,vmargin=3cm]{geometry}
+\usepackage[hyperindex=true]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+%%% Fonts:
+\usepackage{amsfonts}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand*\familydefault{\sfdefault}
+
+%%% Math:
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage{multirow}
+
+\setlength{\parindent}{0pt}
+
+\title{}
+\author{Martin Wegner}
+
+\lhead{Martin Wegner \\ Matr.-Nr. 2864217}
+\chead{Online Algorithms -- Homework No. 5}
+\rhead{\thepage}
+\lfoot{}
+\cfoot{}
+\rfoot{07/03/2011}
+
+\begin{document}
+
+	\section{Task 1}
+
+	Given that all jobs are to be scheduled as soon as they arrive (i.\,e. no job can be delayed to wait
+	for other jobs' termination) both strategies \texttt{GREEDY} and \texttt{OPT} will optimize the
+	maximum (current) load over all machines to be minimal at all times $ t $. Additionally,
+	\texttt{GREEDY} will consider machines on which a job was terminated as soon as
+	it happens by definition -- as it is always assigning the job to the machine with the
+	minimum load (after assigning). Thus, \texttt{GREEDY} is aware of terminating jobs
+	at any time $ t $ and both strategies will try to minimize the load for all possible
+	points of time $ t $, so that the given upper bound still holds.
+
+	\section{Task 2}
+	\subsection{a}
+
+	\begin{itemize}
+		\item	The delay of jobs $ j_i $ is defined by $ l_i = c_i + q_i = s_i + p_i + q_i $.
+				Assume $ \forall_{i = 1, \dots, n} q_i = 0 $, then $ s_i $ is defined by:
+				\[
+					s_i = \sum_{j = 1}^{i - 1} p_j
+				\]
+				So for the delay of the last job, one gets:
+				\[
+					l_n = s_n + p_n = \sum_{i = 1}^n p_i
+				\]
+				Since $ q_i \geq 0 $:
+				\[
+					l_n = \sum{i = 1}^n p_i + q_n
+				\]
+				and
+				\[
+					L_{\textnormal{max}}^{*} \geq \sum_{i = 1}^n p_i
+				\]
+				Thus, Bound\,(3) is valid.
+		\item	Since $ L_{\textnormal{max}}^{*} $ is the maximum delay of jobs (over all schedules)
+				it has to be greater (or equal) to $ r_i + p_i + q_i $ since a job $ j_i $
+				can be scheduled at time $ r_i $ at the earliest, is processed for a (given) time $ p_i $ and
+				delivered for a (given) time $ q_i $. By definition of the delay $ l_i $
+				the maximum delay has to be greater (or equal) than the delay of \emph{any} job
+				$ j_i $, as is stated in Bound\,(4).
+	\end{itemize}
+
+\end{document}

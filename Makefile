@@ -1,6 +1,6 @@
 BIBTEX=
 INPUTS=$(wildcard ???-*.latex)
-SOURCES=Solution-1.latex
+SOURCES=Solution-1.latex Solution-5.latex
 TARGETS=$(shell echo ${SOURCES} | sed -e 's/.latex/.pdf/g')
 SUBDIRS=
 
