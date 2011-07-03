@@ -1,0 +1,136 @@
+Martin Wegner
+
+1.d)
+  Please find attached the program "rob.py" written in Python.
+  Defined are the following functions:
+    - fxi( i, c, d )     : calculates the value of x_i for the given factor c and
+                           distance d according to the given formula
+    - dxi( i, c, d )     : calculates the value of d_i for the given factor c and
+                           distance d according to the given formula
+    - printXi( i, c, d ) : prints values of x_i up to i for given c and d,
+                           one value per line
+  Additionaly are defined:
+    - xi                 : Global cache for calculated values of x_i to speed
+                           up the calculation in the recursion
+
+  The following table lists all values x_i for c = 2.0015 and d = 40.0 as
+  calculated by the program until the strategy aborted due to a negative value
+  for x_i:
+
+  x_1 = 1.0015000000000001
+  x_2 = 1.0045022499999998
+  x_3 = 1.0092488237355006
+  x_4 = 1.0161935183402164
+  x_5 = 1.0261879680059973
+  x_6 = 1.0408386054962548
+  x_7 = 1.0631855817962919
+  x_8 = 1.0989804564307644
+  x_9 = 1.1590578877711408
+  x_10 = 1.2636553597461031
+  x_11 = 1.4500583527129365
+  x_12 = 1.7854752540199499
+  x_13 = 2.3865946994416163
+  x_14 = 3.4417463232572842
+  x_15 = 5.2062195757864131
+  x_16 = 7.8522074770789203
+  x_17 = 10.8400602498247309
+  x_18 = 11.5755745109419621
+  x_19 = 6.5355024067201128
+  x_20 = 0.2936018677158643
+
+  The value of d_20 was then calculated as:   39.998263215325
+
+  For c = 2.0016 and distance d = 40.0, the values of x_i resulted in:
+
+  x_1 = 1.0015999999999998
+  x_2 = 1.0048025599999999
+  x_3 = 1.0099495557265001
+  x_4 = 1.0176920285881010
+  x_5 = 1.0292694178462529
+  x_6 = 1.0470459472066000
+  x_7 = 1.0755317240196423
+  x_8 = 1.1233044531929330
+  x_9 = 1.2065713216052956
+  x_10 = 1.3556266185217360
+  x_11 = 1.6261447041663573
+  x_12 = 2.1176140277951667
+  x_13 = 2.9988357982518430
+  x_14 = 4.5255631822174749
+  x_15 = 6.9744846749177754
+  x_16 = 10.2279111304571018
+  x_17 = 12.4940106188522506
+  x_18 = 9.4257744540847881
+  x_19 = 1.7734877063449233
+
+  And the distance d_19 accordingly evaluates to:   39.99435344068013
+
+  These results were discussed intensely, but no statement could be made if it
+  is possible to conclude that the competitive ratios can be achieved.
+  However, manual calculation of x_20 and d_20 for c = 2.0015 and x_19 and
+  d_19 for c = 2.0016 (see attached sheet) suggest that the above calculation
+  is correct per se.
+
+  With the given program I was able to show that the length of the chord from
+  the robot's position to the starting point approaches d = 40.0 with
+  sufficient precision with the optimal c = 2.001525 (as shown in the given
+  paper) - only accounting for some inaccuracies that might occur due to
+  floating point precision errors.
+
+  With c = 2.001525 and d = 40.0, the program evaluates d_19 to
+
+    d_19 = 39.9999985803499
+
+  The full run to retrieve above results was:
+  $ python
+  >>> import rob
+  >>> rob.printXi(21, 2.0015, 40.0)
+  x_1 = 1.0015000000000001
+  x_2 = 1.0045022499999998
+  x_3 = 1.0092488237355006
+  x_4 = 1.0161935183402164
+  x_5 = 1.0261879680059973
+  x_6 = 1.0408386054962548
+  x_7 = 1.0631855817962919
+  x_8 = 1.0989804564307644
+  x_9 = 1.1590578877711408
+  x_10 = 1.2636553597461031
+  x_11 = 1.4500583527129365
+  x_12 = 1.7854752540199499
+  x_13 = 2.3865946994416163
+  x_14 = 3.4417463232572842
+  x_15 = 5.2062195757864131
+  x_16 = 7.8522074770789203
+  x_17 = 10.8400602498247309
+  x_18 = 11.5755745109419621
+  x_19 = 6.5355024067201128
+  x_20 = 0.2936018677158643
+  Aborted.
+  >>> rob.dxi(20, 2.0015, 40.0)
+  39.998263215325
+  >>> rob.xi = {}
+  >>> rob.printXi(20, 2.0016, 40.0)
+  x_1 = 1.0015999999999998
+  x_2 = 1.0048025599999999
+  x_3 = 1.0099495557265001
+  x_4 = 1.0176920285881010
+  x_5 = 1.0292694178462529
+  x_6 = 1.0470459472066000
+  x_7 = 1.0755317240196423
+  x_8 = 1.1233044531929330
+  x_9 = 1.2065713216052956
+  x_10 = 1.3556266185217360
+  x_11 = 1.6261447041663573
+  x_12 = 2.1176140277951667
+  x_13 = 2.9988357982518430
+  x_14 = 4.5255631822174749
+  x_15 = 6.9744846749177754
+  x_16 = 10.2279111304571018
+  x_17 = 12.4940106188522506
+  x_18 = 9.4257744540847881
+  x_19 = 1.7734877063449233
+  Aborted.
+  >>> rob.dxi(19, 2.0016, 40.0)
+  39.99435344068013
+  >>> rob.xi = {}
+  >>> rob.dxi(19, 2.001525, 40.0)
+  39.9999985803499
