@@ -73,4 +73,30 @@
 				$ j_i $, as is stated in Bound\,(4).
 	\end{itemize}
 
+	\subsection{b}
+	Worst case:
+	Suppose there are two jobs $ j_i $ and $ j_j $ with $ r_j = r_i + \epsilon $ with $ \epsilon \to 0 $.
+	Further, let the runtime of job $ j_i $ be $ p_i = R $, the delivery time $ q_i = 0 $
+	with $ R \to \infty $ and of job $ j_j $ the runtime $ p_j = 1 $ and delivery time $ q_j = R $.
+	Then \texttt{LS} will schedule $ j_i $ before $ j_j $, thus causing a delay $ l_j $ for
+	$ j_j $ of $ l_{j_1} = (R - \epsilon) + 1 + R $. (Delay of $ j_i $ is $ l_{i_1} = R $).
+	\texttt{OPT} on the other hand 	would schedule these jobs the other way round,
+	such that $ j_j $ runs before $ j_i $ and one gets that $ l_{j_2} = 1 + R $
+	and $ l_{i_2} = \epsilon + 1 + R $.
+
+	Thus, in this case $ L_{\textnormal{max}}^{\textnormal{LS}} = l_{j_1} = 2R + 1 $
+	and $ L_{\textnormal{max}}^{*} = R + 1 $ such that:
+	\[
+		\lim_{\stackrel{R \to \infty}{\epsilon \to 0}} \left(
+			\frac{L_{\textnormal{max}}^{\textnormal{LS}}}{L_{\textnormal{max}}^{*}}
+		\right)
+		= \lim_{\stackrel{R \to \infty}{\epsilon \to 0}} \left(
+			\frac{(R - \epsilon) + R + 1}{R + 1}
+		\right)
+		= \lim_{\stackrel{R \to \infty}{\epsilon \to 0}} \left(
+			\frac{2 \cdot R + 1}{R + 1}
+		\right)
+		= 2
+	\]
+
 \end{document}
